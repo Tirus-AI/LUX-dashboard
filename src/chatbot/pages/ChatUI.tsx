@@ -217,7 +217,8 @@ const ChatUI: React.FC<ChatUIProps> = ({ themeConfig }: ChatUIProps) => {
     setNewMessage("");
     setIsTyping(true);
 
-    const API_BASE = "http://127.0.0.1:5000";
+    // const API_BASE = "http://127.0.0.1:5000";
+    const API_BASE = "https://htwj1163-5000.euw.devtunnels.ms";
     const wantsAnalytics = looksAnalytic(msg);
     const endpoint = wantsAnalytics ? "/analytics" : "/";
 

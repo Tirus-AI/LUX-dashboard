@@ -5,30 +5,19 @@ import type {
   RaRecord,
 } from "react-admin";
 
-// const API = "/api/calls";
-const API = "http://localhost:3000/api/calls";
-// const API = "http://76tgvxtw-3000.euw.devtunnels.ms/api/calls";
+import { retellClient } from "../../services/retell";
 
 async function fetchCalls(): Promise<any[]> {
-  const res = await fetch(API);
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  const body = await res.json();
-  const list = Array.isArray(body) ? body : body?.data ?? [];
-  return list.map((r: any) => ({ id: r.call_id ?? crypto.randomUUID(), ...r }));
-}
+  const body = await retellClient.call.list({});
 
-async function del(id: string) {
-  const res = await fetch(`${API}/${encodeURIComponent(id)}`, { method: "DELETE" });
-  if (!res.ok && res.status !== 204) throw new Error(`${res.status} ${res.statusText}`);
-}
+  const list = Array.isArray(body)
+    ? body
+    : (body as any)?.data ?? [];
 
-async function delMany(ids: string[]) {
-  const res = await fetch(API, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ids }),
-  });
-  if (!res.ok && res.status !== 204) throw new Error(`${res.status} ${res.statusText}`);
+  return list.map((r: any) => ({
+    id: r.call_id ?? crypto.randomUUID(),
+    ...r,
+  }));
 }
 
 function getByPath(obj: any, path?: string) {
@@ -187,15 +176,27 @@ const callsDataProvider: DataProvider = {
     return { data: paged, total: filtered.length };
   },
 
-  delete: async (_resource, params) => {
-    await del(String(params.id));
-    return { data: { id: params.id } as any };
-  },
+delete: async (_resource, params) => {
+  console.log("Delete:", params.id);
 
-  deleteMany: async (_resource, params) => {
-    await delMany(params.ids.map(String));
-    return { data: params.ids };
-  },
+  // if Retell supports delete:
+  // await retellClient.call.delete(String(params.id));
+
+  return { data: { id: params.id } as any };
+},
+
+deleteMany: async (_resource, params) => {
+  console.log("Delete many:", params.ids);
+
+  // if supported:
+  // await Promise.all(
+  //   params.ids.map(id =>
+  //     retellClient.call.delete(String(id))
+  //   )
+  // );
+
+  return { data: params.ids };
+},
 
   getOne: async () => ({ data: {} as any }),
   getMany: async () => ({ data: [] }),

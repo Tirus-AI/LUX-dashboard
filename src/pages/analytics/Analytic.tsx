@@ -290,7 +290,7 @@ const live = React.useMemo<AnalyticsEventDetail | null>(() => {
                   }}
                   disabled={!live?.question}
                 >
-                  Download JSON
+                  EXPORT DATA
                 </Button>
               </Stack>
             }

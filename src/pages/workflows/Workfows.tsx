@@ -63,6 +63,16 @@ export default function Workflows() {
               "body .MuiMenu-paper .MuiMenuItem-root.Mui-selected:hover": {
                 backgroundColor: `${C.hover} !important`,
               },
+              "body .MuiTableSortLabel-root.Mui-active": {
+                color: "rgba(255,255,255,0.65) !important",
+              },
+            "body .MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon": {
+              color: "rgba(255,255,255,0.65) !important",
+              opacity: 1,
+            },
+            "body .MuiTableSortLabel-icon": {
+              color: "rgba(255,255,255,0.65) !important",
+            },
             }}
           />
           <Box sx={{ maxWidth: 1400, mx: "auto", pb: 3, px: 3, width: "100%" }}>

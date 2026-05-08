@@ -56,15 +56,11 @@ export default function CallExpandPanel() {
         <FieldKV label="Twilio SID" value={rec.telephony_identifier?.twilio_call_sid} />
         <FieldKV
           label="Unit price"
-          value={rec.call_cost ? `$${Number(rec.call_cost.total_duration_unit_price ?? 0).toFixed(6)}` : "-"}
+          value={rec.call_cost ? `$${Number(rec.call_cost.total_duration_unit_price ?? 0).toFixed(2)}` : "-"}
         />
         <FieldKV
           label="Billing seconds"
           value={rec.call_cost?.total_duration_seconds ?? msToSec(rec.duration_ms)}
-        />
-        <FieldKV
-          label="Cost"
-          value={rec.call_cost ? `$${((rec.call_cost.combined_cost ?? 0) / 100).toFixed(2)}` : "-"}
         />
         <FieldKV
           label="Recording"

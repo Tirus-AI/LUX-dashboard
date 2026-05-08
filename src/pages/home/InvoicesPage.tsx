@@ -128,6 +128,22 @@ export default function InvoicesPage() {
                                     color: "rgba(255,255,255,0.65) !important",
                                     opacity: 1,
                                 },
+                                "& .MuiTableSortLabel-root": {
+                                    color: `${C.text} !important`,
+                                },
+
+                                "& .MuiTableSortLabel-icon": {
+                                    color: "rgba(255,255,255,0.65) !important",
+                                },
+
+                                "& .MuiTableSortLabel-root.Mui-active": {
+                                    color: "rgba(255,255,255,0.65) !important",
+                                },
+
+                                "& .MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon": {
+                                    color: "rgba(255,255,255,0.65) !important",
+                                    opacity: 1,
+                                },
 
                                 "& .MuiTableBody-root, \
        .MuiTableBody-root .MuiTableRow-root, \
