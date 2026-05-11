@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Box, IconButton } from "@mui/material";
-import CloseRounded from "@mui/icons-material/CloseRounded";
+import { Box } from "@mui/material";
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
 } from "recharts";
@@ -23,8 +22,6 @@ type Props = {
 export default function NeonLineChart({
   config,
   height = "100%",
-  onClose,
-  showClose = true,
 }: Props) {
   const xKey = config?.x ?? "x";
   const yKey = Array.isArray(config?.y) ? config.y[0] : config?.y ?? "y";
@@ -96,12 +93,7 @@ export default function NeonLineChart({
     left: 4
   }), []);
 
-  const [isChartVisible, setIsChartVisible] = React.useState(true);
-
-  const handleClose = () => {
-    setIsChartVisible(false);
-    if (onClose) onClose();
-  };
+  const isChartVisible = React.useState(true);
 
   return (
     <>
@@ -179,7 +171,10 @@ export default function NeonLineChart({
               />
               <Tooltip
                 contentStyle={{ backgroundColor: "rgba(255,255,255,0.8)", border: "none", color: "#000" }}
-                formatter={(value: number) => [value, String(yKey)]}
+                formatter={(value) => [
+                  Number(value ?? 0),
+                  String(yKey),
+                ]}
                 labelFormatter={(label: any) => `${xKey}: ${label}`}
               />
 

@@ -176,10 +176,11 @@ export default function NeonDonutCostEfficiency({
               color: "#111",
               boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
             }}
-            formatter={(value: number, name: string) => {
+            formatter={(value, name) => {
+              const numericValue = Number(value ?? 0);
               const total = data.reduce((a, d) => a + d.value, 0) || 1;
-              const pct = ((Number(value) / total) * 100).toFixed(1) + "%";
-              return [fmt$(Number(value)) + " • " + pct, name];
+              const pct = ((numericValue / total) * 100).toFixed(1) + "%";
+              return [fmt$(numericValue) + " • " + pct, name];
             }}
           />
 

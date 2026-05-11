@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Box, IconButton } from "@mui/material";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { Box } from "@mui/material";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import type { ChartConfig } from "../../types/chart";
 
@@ -64,7 +63,6 @@ export default function NeonDonutChartDynamic({
   startAngle = 90,
   endAngle = -270,
   baseHue = 280,
-  onClose,
 }: Props) {
   const [isChartVisible, setIsChartVisible] = React.useState(true);
 
@@ -99,11 +97,6 @@ export default function NeonDonutChartDynamic({
     () => rows.reduce((a, d) => a + (Number.isFinite(d.value) ? d.value : 0), 0) || 1,
     [rows]
   );
-
-  const handleClose = () => {
-    setIsChartVisible(false);
-    if (onClose) onClose();
-  };
 
   if (!isChartVisible) return null;
 
@@ -155,8 +148,9 @@ export default function NeonDonutChartDynamic({
               color: "#fff",
               boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
             }}
-            formatter={(value: number, _name: string, p: any) => {
-              const pct = ((Number(value) / total) * 100).toFixed(1) + "%";
+             formatter={(value, _name, p: any) => {
+              const numericValue = Number(value ?? 0);
+              const pct = ((numericValue / total) * 100).toFixed(1) + "%";
               return [pct, p?.payload?.name ?? ""];
             }}
           />

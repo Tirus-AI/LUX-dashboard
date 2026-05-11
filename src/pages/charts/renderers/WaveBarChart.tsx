@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Box, IconButton } from "@mui/material";
-import CloseRounded from "@mui/icons-material/CloseRounded";
+import { Box } from "@mui/material";
 import {
   ComposedChart,
   Bar,
@@ -50,19 +49,15 @@ type Props = {
   onClose?: () => void;
 };
 
-export default function NeonWaveBars({ config, height = "100%", onClose }: Props) {
+export default function NeonWaveBars({ config, height = "100%" }: Props) {
   const xKey = config?.x ?? "x";
   const yKey = Array.isArray(config?.y) ? config.y[0] : (config?.y ?? "y");
 
-  const [isChartVisible, setIsChartVisible] = React.useState(true);
+  const [, setIsChartVisible] = React.useState(true);
 
   React.useEffect(() => {
     setIsChartVisible(true);
   }, [config]);
-  const handleClose = () => {
-    setIsChartVisible(false);
-    if (onClose) onClose();
-  };
 
   const data = React.useMemo<Point[]>(() => {
     const src = Array.isArray(config?.data) ? config.data : [];
@@ -382,8 +377,11 @@ export default function NeonWaveBars({ config, height = "100%", onClose }: Props
               boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
             }}
             content={<WaveTooltip />}
-            formatter={(value: number) => [value, yKey]}
-            labelFormatter={(label: any) => `${xKey}: ${label}`}
+            formatter={(value) => [
+              Number(value ?? 0),
+              String(yKey),
+            ]}     
+           labelFormatter={(label: any) => `${xKey}: ${label}`}
           />
 
           <Bar

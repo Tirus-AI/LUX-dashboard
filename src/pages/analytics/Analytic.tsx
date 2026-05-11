@@ -95,7 +95,6 @@ function pickNoPieFallback(cfg: ChartConfig): ChartConfig["possible_charts"] {
 }
 
 export default function Analytic() {
-  const { state } = useLocation() as { state?: AnalyticsEventDetail | null };
   const [isAnyChartVisible, setIsAnyChartVisible] = React.useState(true);
 
   const location = useLocation() as { state?: AnalyticsEventDetail | null };

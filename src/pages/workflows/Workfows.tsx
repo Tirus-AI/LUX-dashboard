@@ -1,6 +1,6 @@
 import {
   AdminContext, ResourceContextProvider, List, DatagridConfigurable,
-  TextField, FunctionField, BulkDeleteButton
+  TextField, FunctionField
 } from "react-admin";
 import { Box, Chip, GlobalStyles } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -15,21 +15,6 @@ import CallExpandPanel from "../workflows/components/CallExpandPanel";
 import ListPagination from "../workflows/components/ListPagination";
 import ListActions from "../workflows/components/ListActions";
 import theme from "../../theme";
-
-const BulkActions = () => (
-  <BulkDeleteButton
-    label="Delete selected"
-    confirmTitle="Delete selected calls?"
-    confirmContent="This action cannot be undone."
-    mutationMode="pessimistic"
-    color="error"
-    sx={{
-      color: (t) => `${t.palette.error.main} !important`,
-      "& .MuiSvgIcon-root": { color: (t) => `${t.palette.error.main} !important` },
-      "&:hover": { backgroundColor: (t) => t.palette.error.main + "1A" },
-    }}
-  />
-);
 
 export default function Workflows() {
   return (

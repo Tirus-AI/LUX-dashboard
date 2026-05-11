@@ -1,5 +1,5 @@
 // Global chart events (no deps)
-import type { ChartType } from "../types/chart";
+import type { ChartType } from "../../types/chart";
 
 export const CHART_REMOVE_EVENT = "tirus-analytics:remove-chart";
 

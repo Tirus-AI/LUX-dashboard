@@ -1,8 +1,6 @@
 import { alpha, createTheme } from '@mui/material/styles';
-import { FaRobot, } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 import TirIcon from "/assets/Tir.svg";
-import { IconButton } from '@mui/material';
 
 export interface ChatbotThemeConfig {
   primary: string;
@@ -29,17 +27,6 @@ export const C = {
 };
 
 export const defaultChatbotTheme: ChatbotThemeConfig = {
-  // primary: '#1976d2',
-  // secondary: '#1565c0',
-  // buttonColor: '#2196f3',
-  // buttonHoverColor: '#1976d2',
-  // userMessageBg: '#2196f3',
-  // botMessageBg: '#e0e0e0',
-  // botAvatarBg: '#2196f3',
-  // chatContainerBg: '#ffffff',
-  // // robotIcon: <FaRobot />,
-  // robotIcon: <img src="/assets/Tir.svg" alt="bot" width={60} height={60} />,
-  // sendIcon: <IoSend />
   primary: C.accent,
   secondary: "#6a90ff",              
   buttonColor: C.accent,
