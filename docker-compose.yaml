@@ -1,0 +1,10 @@
+services:
+  autolux-dashboard:
+    env_file: .env
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: autolux-dashboard
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
